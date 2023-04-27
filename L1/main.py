@@ -13,6 +13,8 @@ x = np.linspace(-np.pi, np.pi, 1000)
 def plot_f(x):
     y = f(x)
     plt.plot(x, y)
+    plt.xlabel("x")
+    plt.ylabel("y = 19 * sin(pi * 19 * x)")
     plt.show()
 
 # Call the plot_f function to plot f(x)
@@ -62,6 +64,8 @@ def plot_approximation(x, N):
     for i in range(0, N, 4):
         s += ak[i] * np.cos(i * x) + bk[i] * np.sin(i * x)
         plt.plot(x, s, label=f'N={i + 1}')
+    plt.xlabel("x")
+    plt.ylabel("Fourier approximation")
     plt.legend()
     plt.show()
 

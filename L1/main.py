@@ -28,8 +28,9 @@ def fourier_coefficients(x, N):
         bk.append((2 / np.pi) * np.trapz(f(x) * np.sin(k * x), x))
     return a0, ak, bk
 
-# Compute and store the first 10 Fourier coefficients of f(x)
+# Define the number of terms
 N = 50
+# Compute and store the first 50 Fourier coefficients of f(x)
 a0, ak, bk = fourier_coefficients(x, N)
 
 # Print the Fourier coefficients in a table
@@ -49,7 +50,7 @@ def fourier_series_approximation(x, N):
         series_sum += ak[k - 1] * np.cos(k * x) + bk[k - 1] * np.sin(k * x)
     return series_sum
 
-# Call the print_coefficients_table function to calculate approximation
+# Call the print_coefficients_table function to calculate approximations
 approximations = fourier_series_approximation(x, N)
 
 # Plot the original function and its Fourier series approximation using N terms
@@ -78,14 +79,12 @@ def plot_harmonics(a0, ak, bk, N):
     plt.legend()
     plt.xlabel('k')
     plt.ylabel('a(k) in the frequency domain')
-
     plt.subplot(122)
     plt.stem(k_values, b_values, linefmt='b-', markerfmt='bo', label='b(k)')
     plt.legend()
     plt.xlabel('k')
     plt.ylabel('b(k) in the frequency domain')
     plt.show()
-
 
 # Call the plot_harmonics function to plot the first N harmonics and their corresponding Fourier coefficients
 plot_harmonics(a0, ak,bk, N)

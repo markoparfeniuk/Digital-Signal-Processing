@@ -8,7 +8,7 @@ phi = 1  # Set phase shift
 
 # Generate test sequence with distorted sine wave
 def generate_test_sequence(N, n, A, phi):
-    x = np.linspace(0, 0.5, N)
+    x = np.linspace(0, 0.555, N)
     exact = A * np.sin(n * x + phi)
     deviation = np.random.uniform(-0.05 * A, 0.05 * A, N)
     apprx = exact + deviation
@@ -19,7 +19,8 @@ def arithmetic_mean(values):
     return np.mean(values)
 
 def harmonic_mean(values):
-    return len(values) / np.sum(1.0 / values)
+    values = np.where(values == 0, np.nan, values)
+    return len(values) / np.nansum(1.0 / values)
 
 def geometric_mean(values):
     values = np.where(values <= 0, np.nan, values)
@@ -28,7 +29,7 @@ def geometric_mean(values):
 # Calculate absolute and relative errors
 def calculate_errors(exact, apprx):
     absolute_error = np.abs(exact - apprx)
-    relative_error = absolute_error / np.abs(exact)
+    relative_error = absolute_error / (np.abs(exact) + 1)
     return absolute_error, relative_error
 
 # Plot both the exact and approximate sequences
